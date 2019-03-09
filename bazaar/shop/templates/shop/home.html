@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    {%  for product in Products %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ product.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'user-Products' product.seller.username %}">{{ product.seller }}</a>
+              <small class="text-muted">{{ product.date_posted|date:'F d, Y' }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'Product-detail' product.id %}">{{ product.title }}</a></h2>
+            <p class="article-content">{{ product.content }}</p>
+          </div>
+        </article>
+    {%  endfor %}
+{% endblock content %}

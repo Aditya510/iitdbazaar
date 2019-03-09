@@ -1,0 +1,35 @@
+{% extends "shop/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.seller.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-Products' object.seller.username %}">{{ object.seller }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        {% if object.seller == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'Product-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'Product-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      <h4> Price : {{ object.price }}</h4>
+      {% if object.available == True %}
+        <h6> In stock now! </h6>
+      {% elif object.available == True %}
+        <h6> Out of Stock, available soon! </h6>
+      {% endif %}
+      <h6> {{ object.description }}</h6>
+      <p class="article-content">{{ object.content }}</p>
+      <img class="" src="{{ object.image.url }}">
+
+
+    <h2> Interested ? </h2>
+        <h6>Send your queries here, it will be emailed to the user</h6>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'send-query' object.id %}">Click here</a>
+
+
+    </div>
+  </article>
+{% endblock content %}

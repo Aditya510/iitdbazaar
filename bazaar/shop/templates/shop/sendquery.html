@@ -1,0 +1,12 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>Contact the Seller by posting your query here</h1>
+    <p> Enter your queries here</p>
+    <p> {{ email }}</p>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+    {% endblock content %}
+
